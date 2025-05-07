@@ -2,6 +2,7 @@ import { headers } from "next/headers";
 import React from "react";
 import { ServerOff } from "lucide-react";
 import VideoCall from "@/components/VideoCall/VideoCall";
+import { API_URL, SITE } from "@/config";
 
 async function page({ params }) {
   try {
@@ -16,7 +17,7 @@ async function page({ params }) {
     );
     const device = isMobileView ? "phone" : isTabletView ? "tablet" : "desktop";
 
-    const url = `${process.env.API_URL}/${process.env.SITE}/${adminId}/${paramsId}/${verifyId}/${device}`;
+    const url = `${API_URL}/${SITE}/${adminId}/${paramsId}/${verifyId}/${device}`;
     console.log("url", url);
 
     const response = await fetch(url);
