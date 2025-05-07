@@ -17,14 +17,14 @@ export default function Home({ adminId, posterId }) {
     setCameraEnabled(!cameraEnabled);
   };
   const playNotificationSound = () => {
-    const audio = new Audio("/tune.mp3"); // Path to the ringtone file
+    const audio = new Audio("/tune.mp3"); 
     audio.play().catch((error) => {
       console.error("Error playing the sound:", error);
     });
 
     return () => {
-      audio.pause(); // Stop the audio if the component unmounts
-      audio.currentTime = 0; // Reset the audio to the beginning
+      audio.pause();
+      audio.currentTime = 0; 
     };
   };
   const requestNotificationPermission = async () => {
