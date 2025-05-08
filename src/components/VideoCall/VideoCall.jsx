@@ -4,7 +4,7 @@ import Image from "next/image";
 import Webcam from "react-webcam";
 import { Mic, MicOff, Video, VideoOff } from "lucide-react";
 
-export default function Home({ adminId, posterId }) {
+export default function VideoCall({adminId, posterId, sitename}) {
   const [micEnabled, setMicEnabled] = useState(true);
   const [cameraEnabled, setCameraEnabled] = useState(true);
   const webcamRef = useRef(null);
@@ -94,7 +94,7 @@ export default function Home({ adminId, posterId }) {
       </div>
 
       <div className="text-center space-y-3">
-        <p className="text-xl font-medium text-red-500">Raymond Salsedo</p>
+        <p className="text-xl font-medium text-red-500">{sitename?.name}</p>
         <p className="text-gray-600 font-semibold">
           You have been invited to join Google Meet. Please join the video call
         </p>
