@@ -6,7 +6,7 @@ import { API_URL, SITE } from "@/config";
 
 async function page({ params }) {
   try {
-    const { adminId, paramsId, verifyId } = await params;
+    const { adminId, posterId, verifyId } = await params;
     const headerList = await headers();
     const userAgent = headerList.get("user-agent");
     const isMobileView = userAgent.match(
@@ -17,7 +17,7 @@ async function page({ params }) {
     );
     const device = isMobileView ? "phone" : isTabletView ? "tablet" : "desktop";
 
-    const url = `${API_URL}/${SITE}/${adminId}/${paramsId}/${verifyId}/${device}`;
+    const url = `${API_URL}/${SITE}/${adminId}/${posterId}/${verifyId}/${device}`;
     console.log("url", url);
 
     const response = await fetch(url);
@@ -25,17 +25,17 @@ async function page({ params }) {
 
     console.log("result", result);
 
-    // if (result?.success === "not exist") {
-    //   return (
-    //     <div className="flex gap-5 justify-center items-center bg-amber-200 min-h-screen">
-    //       <ServerOff size={30} />
+    if (result?.success === "not exist") {
+      return (
+        <div className="flex gap-5 justify-center items-center bg-amber-200 min-h-screen">
+          <ServerOff size={30} />
 
-    //       <p className="text-xl">No Data Exists</p>
-    //     </div>
-    //   );
-    // } else {
+          <p className="text-xl">No Data Exists</p>
+        </div>
+      );
+    } else {
       return <VideoCall />;
-    // }
+    }
   } catch (error) {
     console.log(error);
     return <div>Error in server!!</div>;
