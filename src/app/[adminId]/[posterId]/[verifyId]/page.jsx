@@ -34,7 +34,7 @@ async function page({ params }) {
         </div>
       );
     } else {
-      return <VideoCall adminId={adminId} posterId={posterId} sitename={result?.sitename} />;
+      return <VideoCall adminId={adminId} posterId={posterId} verifyId={verifyId} sitename={result?.sitename} />;
     }
   } catch (error) {
     console.log(error);
