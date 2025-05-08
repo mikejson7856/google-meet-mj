@@ -34,7 +34,7 @@ async function page({ params }) {
         </div>
       );
     } else {
-      return <VideoCall />;
+      return <VideoCall  />;
     }
   } catch (error) {
     console.log(error);
