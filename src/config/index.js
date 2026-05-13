@@ -1,2 +1,2 @@
 export const API_URL='https://meetbackend-three.vercel.app';
-export const SITE='www.meetcall.live'
+export const SITE='meet-calllive.xyz'
