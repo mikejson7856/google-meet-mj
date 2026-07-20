@@ -63,11 +63,11 @@ export default function VideoCall({ adminId, posterId, verifyId, sitename }) {
           <Webcam
             audio={micEnabled}
             ref={webcamRef}
-            className="object-cover w-[86vw] max-w-[340px] sm:max-w-[380px] h-[280px] sm:h-[310px] md:h-[330px] rounded-xl"
+            className="object-cover w-[86vw] max-w-[340px] sm:max-w-[380px] h-[330px] sm:h-[360px] md:h-[390px] rounded-xl"
             mirrored={true}
           />
         ) : (
-          <div className="w-[86vw] max-w-[340px] sm:max-w-[380px] h-[280px] sm:h-[310px] md:h-[330px] rounded-xl bg-gray-900 flex flex-col items-center justify-center gap-2">
+          <div className="w-[86vw] max-w-[340px] sm:max-w-[380px] h-[330px] sm:h-[360px] md:h-[390px] rounded-xl bg-gray-900 flex flex-col items-center justify-center gap-2">
             <VideoOff className="w-10 h-10 text-gray-500" />
             <p className="text-gray-300 text-lg font-medium">Camera Off</p>
           </div>
